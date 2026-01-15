@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Affordable Naperville</title>
+
+  <style>
+    /* ===== Base ===== */
+    body{
+      margin:0;
+      background:#ffffff;
+      color:#102027;
+      font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+      line-height:1.6;
+    }
+    a{color:#0a68b2;text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* ===== Layout wrapper ===== */
+    .an-wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:24px 16px 48px;
+    }
+
+    /* ===== Current News Bar ===== */
+    .an-news{
+      background:#f5f8fb;
+      border:1px solid #dde6f0;
+      border-radius:10px;
+      padding:10px 14px;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin:0 0 16px;
+    }
+    .an-news .label{
+      background:#0a68b2;
+      color:#fff;
+      border-radius:6px;
+      padding:4px 8px;
+      font-size:12px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-weight:700;
+    }
+    .an-news .item{
+      font-size:14px;
+      color:#23313b;
+    }
+
+    /* ===== Hero (FIXED HEIGHT + FIXED LOGO) ===== */
+    .an-hero{
+      background:#0a2740;
+      color:#ffffff;
+      border-radius:14px;
+      padding:28px 24px;
+      margin:0 0 18px;
+    }
+
+    /* IMPORTANT: this is the logo fix */
+    .an-logo{
+      width:420px;        /* hard cap so it cannot blow up */
+      max-width:100%;
+      margin:0 0 16px 0;
+    }
+    .an-logo svg{
+      display:block;
+      width:100%;
+      height:auto;        /* prevents tall stretching */
+    }
+
+    .an-hero h1{
+      margin:0 0 8px 0;
+      font-size:28px;
+      line-height:1.2;
+    }
+    .an-hero p{
+      margin:6px 0 0 0;
+      max-width:760px;
+      opacity:.95;
+      font-size:16px;
+    }
+
+    /* ===== Buttons ===== */
+    .an-cta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:14px 0 0;
+    }
+    .an-btn{
+      display:inline-block;
+      border-radius:999px;
+      padding:10px 14px;
+      font-size:14px;
+      border:1px solid transparent;
+      text-align:center;
+      white-space:nowrap;
+    }
+    .an-btn.primary{
+      background:#ffd54f;
+      color:#102027;
+      font-weight:700;
+    }
+    .an-btn.primary:hover{background:#ffca28;text-decoration:none}
+    .an-btn.secondary{
+      background:transparent;
+      border-color:#ffffff;
+      color:#ffffff;
+    }
+    .an-btn.secondary:hover{background:rgba(255,255,255,.12);text-decoration:none}
+
+    /* ===== Sections ===== */
+    .an-section{margin:22px 0}
+    .an-section h2{margin:0 0 8px;font-size:22px}
+    .an-muted{color:#34434e}
+
+    /* ===== Cards ===== */
+    .an-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+    .an-card{
+      border:1px solid #e0e7ef;
+      border-radius:12px;
+      background:#ffffff;
+      padding:14px;
+    }
+    .an-card h3{margin:0 0 6px;font-size:16px}
+    .an-pill{
+      display:inline-block;
+      font-size:12px;
+      border-radius:999px;
+      padding:3px 9px;
+      background:#e3f2fd;
+      color:#0a68b2;
+      margin:6px 0 10px;
+      font-weight:600;
+    }
+    .an-bullets{margin:10px 0 0;padding:0 0 0 18px}
+    .an-bullets li{margin:6px 0}
+
+    /* ===== Split Panels ===== */
+    .an-split{
+      display:grid;
+      grid-template-columns:minmax(0,2fr) minmax(0,1.15fr);
+      gap:16px;
+      align-items:start;
+    }
+    .an-panel{
+      border:1px solid #e0e7ef;
+      border-radius:12px;
+      background:#ffffff;
+      padding:14px;
+    }
+    .an-panel h3{margin:0 0 6px;font-size:16px}
+
+    /* ===== Accordion ===== */
+    details.an-accordion{
+      border:1px solid #e0e7ef;
+      border-radius:12px;
+      background:#ffffff;
+      padding:12px 14px;
+      margin:10px 0;
+    }
+    details.an-accordion summary{cursor:pointer;font-weight:700}
+    details.an-accordion .an-body{padding-top:10px}
+
+    /* ===== Bottom CTA ===== */
+    .an-bottom{
+      background:#0a2740;
+      color:#ffffff;
+      border-radius:14px;
+      padding:18px;
+      text-align:center;
+      margin-top:24px;
+    }
+    .an-bottom h2{margin:0 0 6px;color:#ffffff}
+    .an-bottom p{margin:6px auto 14px;max-width:800px;opacity:.95}
+
+    /* ===== Responsive ===== */
+    @media (max-width:900px){
+      .an-grid{grid-template-columns:1fr}
+      .an-split{grid-template-columns:1fr}
+    }
+    @media (max-width:600px){
+      .an-hero{padding:22px 16px}
+      .an-logo{width:340px}
+    }
+    @media (max-width:500px){
+      .an-news{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="an-wrap">
+
+    <!-- CURRENT NEWS -->
+    <div class="an-news">
+      <div class="label">Current news</div>
+      <div class="item"><strong>Electric/IMEA:</strong> Contract discussion continues — stay updated via newsletters.</div>
+      <div class="item"><strong>March:</strong> Park District referendum ($120M) will be on the ballot.</div>
+      <div class="item"><strong>Now:</strong> Data centers remain a major local cost/reliability topic.</div>
+    </div>
+
+    <!-- HERO -->
+    <section class="an-hero">
+
+      <!-- LOGO (THIS IS THE FIXED VERSION) -->
+      <div class="an-logo">
+        <svg viewBox="0 0 640 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Affordable Naperville logo">
+          <circle cx="75" cy="75" r="60" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+          <circle cx="75" cy="75" r="45" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="4 6"/>
+          <text x="75" y="92" text-anchor="middle" font-size="44" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#FFFFFF">AN</text>
+          <text x="155" y="78" font-size="40" font-family="Arial, Helvetica, sans-serif" font-weight="600" fill="#FFFFFF">Affordable Naperville</text>
+          <text x="158" y="110" font-size="20" font-family="Arial, Helvetica, sans-serif" letter-spacing="0.4" fill="#FFFFFF">Run by concerned citizens</text>
+        </svg>
+      </div>
+
+      <h1>Tracking decisions that could raise the cost of living in Naperville</h1>
+      <p>
+        Affordable Naperville focuses on Naperville electric and IMEA — and also covers other current topics
+        that may increase costs for residents (like the Park District referendum and data center impacts).
+      </p>
+
+      <div class="an-cta">
+        <a class="an-btn primary" href="https://eepurl.com/jp1WWI" target="_blank" rel="noopener">Join email updates</a>
+        <a class="an-btn secondary" href="/newsletters/">Read newsletters</a>
+        <a class="an-btn secondary" href="/citycouncil/">Contact City Council</a>
+      </div>
+    </section>
+
+    <!-- CURRENT ISSUES CARDS -->
+    <section class="an-section">
+      <h2>Current issues</h2>
+      <div class="an-muted">Quick summaries first. Deep dives when you want them.</div>
+
+      <div class="an-grid" style="margin-top:12px;">
+        <div class="an-card">
+          <div class="an-pill">Primary issue</div>
+          <h3>⚡ Naperville Electricity & IMEA</h3>
+          <p>What Naperville pays, why contract decisions matter, and what ratepayers can do.</p>
+          <ul class="an-bullets">
+            <li>Bill impact: monthly electric costs</li>
+            <li>Risk: higher prices & volatility if supply changes</li>
+            <li>Action: contact Council / speak at meetings</li>
+          </ul>
+          <p style="margin-top:10px;"><a href="#imea">Go to IMEA overview ↓</a></p>
+        </div>
+
+        <div class="an-card">
+          <div class="an-pill">March ballot</div>
+          <h3>🏞️ Park District Referendum ($120,000,000)</h3>
+          <p>Resident-focused breakdown of what’s proposed and how costs can show up over time.</p>
+          <ul class="an-bullets">
+            <li>Bill impact: property taxes / debt service</li>
+            <li>Status: March referendum</li>
+            <li>Action: read the breakdown & official sources</li>
+          </ul>
+          <p style="margin-top:10px;"><a href="/current-issues/park-referendum/">See the $120M breakdown →</a></p>
+        </div>
+
+        <div class="an-card">
+          <div class="an-pill">Hot topic</div>
+          <h3>🏗️ Data Centers in Naperville</h3>
+          <p>Big loads can mean big infrastructure questions. Who pays — residents or the new load?</p>
+          <ul class="an-bullets">
+            <li>Bill impact: electric rates / capacity planning</li>
+            <li>Risk: residents subsidizing incremental costs</li>
+            <li>Action: understand carve-outs & approvals</li>
+          </ul>
+          <p style="margin-top:10px;"><a href="/current-issues/data-centers/">What residents should know →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMEA SECTION (PASTE YOUR EXISTING CONTENT HERE) -->
+    <section class="an-section" id="imea">
+      <h2>Naperville’s electricity supply decision (IMEA)</h2>
+      <div class="an-muted">Below is a clean container. Paste your existing IMEA content into the accordion body.</div>
+
+      <details class="an-accordion" open>
+        <summary>Read the full background</summary>
+        <div class="an-body">
+          <!-- PASTE YOUR EXISTING HOMEPAGE IMEA TEXT HERE -->
+          <p>Paste your existing IMEA / electric content here so nothing is lost.</p>
+        </div>
+      </details>
+
+      <div class="an-split">
+        <div class="an-panel">
+          <h3>What can I do?</h3>
+          <ul class="an-bullets">
+            <li><a href="https://eepurl.com/jp1WWI" target="_blank" rel="noopener">Sign up for email updates</a></li>
+            <li><a href="https://www.naperville.il.us/government/meet-your-city-council/" target="_blank" rel="noopener">Find your City Council members</a></li>
+            <li><a href="/citycouncil/">Use our form letter & contact info</a></li>
+            <li><a href="https://www.naperville.il.us/government/board-and-commissions/city-council-meetings-and-workshops/city-council-speaker-sign-up/" target="_blank" rel="noopener">Speak at a City Council meeting</a></li>
+          </ul>
+        </div>
+
+        <div class="an-panel">
+          <h3>Quick takeaways</h3>
+          <ul class="an-bullets">
+            <li>IMEA is the main supply arrangement today.</li>
+            <li>Leaving can increase costs and volatility.</li>
+            <li>Resident input matters (email + meetings).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOTTOM CTA -->
+    <section class="an-bottom">
+      <h2>Get updates before costs hit your bill</h2>
+      <p>We track electricity/IMEA and other high-impact local decisions — and share clear, resident-focused summaries.</p>
+      <div class="an-cta" style="justify-content:center;">
+        <a class="an-btn primary" href="https://eepurl.com/jp1WWI" target="_blank" rel="noopener">Join email updates</a>
+        <a class="an-btn secondary" href="/newsletters/">Read newsletters</a>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
